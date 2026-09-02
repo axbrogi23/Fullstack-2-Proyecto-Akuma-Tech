@@ -1,6 +1,6 @@
-/* =========================
+/* 
    CONFIGURACION GENERAL
-========================= */
+ */
 
 * {
     margin: 0;
@@ -18,9 +18,7 @@ body {
 }
 
 
-/* =========================
-   BARRA DE NAVEGACION
-========================= */
+/* BARRA DE NAVEGACION */
 
 header {
     background-color: #181818;
@@ -71,16 +69,17 @@ nav ul li a {
 }
 
 
-/* EFECTO AL PASAR EL MOUSE */
+
+/*efecto nav al pasar el mouse */
 
 nav ul li a:hover {
     color: #00ff88;
 }
 
 
-/* =========================
+/* 
    SECCION PRINCIPAL
-========================= */
+ */
 
 .inicio {
 
@@ -98,7 +97,7 @@ nav ul li a:hover {
 }
 
 
-/* TEXTO PRINCIPAL */
+/* Texto Principal */
 
 .inicio-texto {
     max-width: 700px;
@@ -124,9 +123,8 @@ nav ul li a:hover {
 }
 
 
-/* =========================
-   BOTON VER PRODUCTOS
-========================= */
+
+/* efecto en el boton de Ver productos */
 
 .boton {
 
@@ -148,7 +146,8 @@ nav ul li a:hover {
 }
 
 
-/* EFECTO BOTON */
+
+/* Efecto boton */
 
 .boton:hover {
 
@@ -158,9 +157,7 @@ nav ul li a:hover {
 }
 
 
-/* =========================
-   PRODUCTOS DESTACADOS
-========================= */
+/* Productos destacados */
 
 .productos-destacados {
 
@@ -180,7 +177,7 @@ nav ul li a:hover {
 }
 
 
-/* CONTENEDOR DE PRODUCTOS */
+/* Contenedor de productos */
 
 .contenedor-productos {
 
@@ -194,7 +191,8 @@ nav ul li a:hover {
 }
 
 
-/* TARJETA DEL PRODUCTO */
+
+/* Tarjeta del producto */
 
 .producto {
 
@@ -210,7 +208,8 @@ nav ul li a:hover {
 }
 
 
-/* EFECTO SOBRE PRODUCTO */
+
+/* Efecto sobre producto */
 
 .producto:hover {
 
@@ -220,7 +219,8 @@ nav ul li a:hover {
 }
 
 
-/* NOMBRE DEL PRODUCTO */
+
+/* Nombre del producto */
 
 .producto h3 {
 
@@ -256,7 +256,7 @@ nav ul li a:hover {
     color: #00ff88;
 }
 
-/* INFORMACION DEL PRODUCTO */
+/* Informacion del producto */
 
 .producto p {
 
@@ -266,9 +266,7 @@ nav ul li a:hover {
 }
 
 
-/* =========================
-   BOTON PRODUCTO
-========================= */
+/* BOTON PRODUCTO */
 
 .producto button {
 
@@ -296,9 +294,7 @@ nav ul li a:hover {
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER*/
 
 footer {
 
@@ -393,9 +389,7 @@ footer {
         display: block;
     }
 
-    /* =========================
-   CARRITO DE COMPRAS
-========================= */
+   /*carrito*/
 
 .carrito {
     padding: 60px 20px;
