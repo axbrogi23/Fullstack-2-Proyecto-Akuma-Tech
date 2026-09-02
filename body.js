@@ -1,6 +1,6 @@
-// ==========================================
+// 
 // PRODUCTOS DE LA TIENDA
-// ==========================================
+// 
 
 const productos = [
 
@@ -67,23 +67,30 @@ const productos = [
         nombre: "Tarjeta Madre MSI B550 Tomahawk",
         precio: 199990,
         imagen: "https://img.terabyteshop.com.br/archive/306771404/placa-mae-msi-mag-b550-tomahawk01.png"
+    },
+
+    {
+        id: 10,
+        nombre: "Memoria RAM Corsair Vengeance LPX 32GB",
+        precio: 149990,
+        imagen: "https://media.spdigital.cl/thumbnails/products/crii92y0_8ab41b80_thumbnail_4096.png"
     }
 
 ];
 
 
 
-// ==========================================
+// 
 // OBTENER EL CARRITO DESDE LOCALSTORAGE
-// ==========================================
+// 
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
 
-// ==========================================
+// 
 // GUARDAR CARRITO
-// ==========================================
+// 
 
 function guardarCarrito() {
 
@@ -96,9 +103,9 @@ function guardarCarrito() {
 
 
 
-// ==========================================
+// 
 // AGREGAR PRODUCTO AL CARRITO
-// ==========================================
+// 
 
 function agregarAlCarrito(idProducto) {
 
@@ -162,9 +169,9 @@ function agregarAlCarrito(idProducto) {
 
 
 
-// ==========================================
+// 
 // ACTUALIZAR NUMERO DEL CARRITO
-// ==========================================
+// 
 
 function actualizarCantidadCarrito() {
 
@@ -196,9 +203,7 @@ function actualizarCantidadCarrito() {
 
 
 
-// ==========================================
-// MOSTRAR PRODUCTOS EN carrito.html
-// ==========================================
+// MOSTRAR PRODUCTOS EN carrito.html //  
 
 function mostrarCarrito() {
 
@@ -329,9 +334,9 @@ function mostrarCarrito() {
 
 
 
-// ==========================================
+// 
 // AUMENTAR CANTIDAD
-// ==========================================
+// 
 
 function aumentarCantidad(idProducto) {
 
@@ -359,9 +364,8 @@ function aumentarCantidad(idProducto) {
 
 
 
-// ==========================================
-// DISMINUIR CANTIDAD
-// ==========================================
+// DISMINUIR CANTIDAD // 
+
 
 function disminuirCantidad(idProducto) {
 
@@ -382,7 +386,7 @@ function disminuirCantidad(idProducto) {
     producto.cantidad--;
 
 
-    // Si llega a 0, se elimina
+    // Si llega a 0, se elimina //
     if (producto.cantidad <= 0) {
 
         eliminarDelCarrito(idProducto);
@@ -402,9 +406,8 @@ function disminuirCantidad(idProducto) {
 
 
 
-// ==========================================
-// ELIMINAR PRODUCTO
-// ==========================================
+// ELIMINAR PRODUCTO // 
+
 
 function eliminarDelCarrito(idProducto) {
 
@@ -425,9 +428,9 @@ function eliminarDelCarrito(idProducto) {
 
 
 
-// ==========================================
-// EJECUTAR AL CARGAR LA PAGINA
-// ==========================================
+// EJECUTAR AL CARGAR LA PAGINA // 
+ 
+ 
 
 actualizarCantidadCarrito();
 
