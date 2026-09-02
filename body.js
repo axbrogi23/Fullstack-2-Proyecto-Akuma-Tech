@@ -1,9 +1,12 @@
-// Función para conectar con el archivo JavaScript
+// ==========================================
+// PRODUCTOS DE LA TIENDA
+// ==========================================
+
 const productos = [
+
     {
         id: 1,
         nombre: "Audífonos Razer BlackShark V2 X",
-        descripcion: "Audífonos gamer con sonido 7.1, drivers de 50 mm y diseño cómodo para largas sesiones de juego.",
         precio: 39990,
         imagen: "https://media.spdigital.cl/thumbnails/products/4vdgea3g_d38e5d9c_thumbnail_4096.png"
     },
@@ -11,7 +14,6 @@ const productos = [
     {
         id: 2,
         nombre: "Mouse Logitech G Pro Wireless",
-        descripcion: "Mouse gamer inalámbrico de alta precisión, con sensor HERO y tecnología LIGHTSPEED, ideal para juegos competitivos.",
         precio: 29990,
         imagen: "img/mouse_logitech_whiteee.png"
     },
@@ -19,7 +21,6 @@ const productos = [
     {
         id: 3,
         nombre: "Teclado Mecánico HyperX Alloy FPS Pro",
-        descripcion: "Teclado mecánico gamer resistente y preciso, ideal para juegos competitivos y sesiones largas.",
         precio: 49990,
         imagen: "img/teclado_alloy_pro_fps.png"
     },
@@ -27,7 +28,6 @@ const productos = [
     {
         id: 4,
         nombre: "MSI GeForce RTX 5070 Ti FRIEREN Edition",
-        descripcion: "RTX 5070 Ti de 16 GB GDDR7 con DLSS 4, potente refrigeración y diseño especial edición Frieren.",
         precio: 1399990,
         imagen: "img/rtx20ti_transparente.png"
     },
@@ -35,7 +35,6 @@ const productos = [
     {
         id: 5,
         nombre: "Monitor Gamer OLED MSI MAG 272QP X24",
-        descripcion: "Monitor gamer OLED de 27 pulgadas con resolución QHD, tasa de refresco de 240Hz y tiempo de respuesta de 0.03ms.",
         precio: 453990,
         imagen: "https://storage-asset.msi.com/global/picture/product/product_175738613265ae8f1336fa1d0d2a172acec0f779a1.webp"
     },
@@ -43,31 +42,383 @@ const productos = [
     {
         id: 6,
         nombre: "AMD Ryzen 5 5600X",
-        descripcion: "Procesador Ryzen 5 5600X con 6 núcleos y 12 hilos, ideal para gaming y productividad.",
         precio: 149990,
         imagen: "img/procesador_ryzen_56000x.png"
+    },
+
+    {
+        id: 7,
+        nombre: "Fuente de Poder Corsair RM850x",
+        precio: 129990,
+        imagen: "img/fuente.png"
+    },
+
+    {
+        id: 8,
+        nombre: "Tarjeta Madre MSI B550 Tomahawk",
+        precio: 199990,
+        imagen: "https://img.terabyteshop.com.br/archive/306771404/placa-mae-msi-mag-b550-tomahawk01.png"
     }
+
 ];
 
 
 
-const contenedorProductos = document.getElementById("contenedor-productos");
+// ==========================================
+// OBTENER EL CARRITO DESDE LOCALSTORAGE
+// ==========================================
 
-function agregarAlCarrito(idProducto) {
-    console.log("Producto agregado:", idProducto);
-    // aquí luego pones la lógica del carrito
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+
+
+// ==========================================
+// GUARDAR CARRITO
+// ==========================================
+
+function guardarCarrito() {
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+
 }
 
-productos.forEach(function(producto) {
-    contenedorProductos.innerHTML += `
-        <div class="producto">
-            <img src="${producto.imagen}" alt="${producto.nombre}" class="imagen-producto" width="200" height="200">
-            <h3>${producto.nombre}</h3>
-            <p>${producto.descripcion}</p>
-            <p>$${producto.precio.toLocaleString("es-CL")}</p>
-            <button>Ver producto</button>
-            <button onclick="agregarAlCarrito(${producto.id})">Añadir al carrito</button>
-        </div>
-    `;
 
-});
+
+// ==========================================
+// AGREGAR PRODUCTO AL CARRITO
+// ==========================================
+
+function agregarAlCarrito(idProducto) {
+
+    // Buscar el producto según el ID
+    const productoEncontrado = productos.find(function(producto) {
+
+        return producto.id === idProducto;
+
+    });
+
+
+    // Si no encuentra el producto, termina la función
+    if (!productoEncontrado) {
+
+        return;
+
+    }
+
+
+    // Revisar si el producto ya existe en el carrito
+    const productoEnCarrito = carrito.find(function(producto) {
+
+        return producto.id === idProducto;
+
+    });
+
+
+    // Si ya existe, aumenta la cantidad
+    if (productoEnCarrito) {
+
+        productoEnCarrito.cantidad++;
+
+    } else {
+
+        // Si no existe, se agrega al carrito
+        carrito.push({
+
+            id: productoEncontrado.id,
+            nombre: productoEncontrado.nombre,
+            precio: productoEncontrado.precio,
+            imagen: productoEncontrado.imagen,
+            cantidad: 1
+
+        });
+
+    }
+
+
+    // Guardar carrito
+    guardarCarrito();
+
+
+    // Actualizar contador
+    actualizarCantidadCarrito();
+
+
+    alert("Producto añadido al carrito");
+
+}
+
+
+
+// ==========================================
+// ACTUALIZAR NUMERO DEL CARRITO
+// ==========================================
+
+function actualizarCantidadCarrito() {
+
+    const cantidadCarrito =
+        document.getElementById("cantidad-carrito");
+
+
+    // Evita errores si el elemento no existe
+    if (!cantidadCarrito) {
+
+        return;
+
+    }
+
+
+    let cantidadTotal = 0;
+
+
+    carrito.forEach(function(producto) {
+
+        cantidadTotal += producto.cantidad;
+
+    });
+
+
+    cantidadCarrito.textContent = cantidadTotal;
+
+}
+
+
+
+// ==========================================
+// MOSTRAR PRODUCTOS EN carrito.html
+// ==========================================
+
+function mostrarCarrito() {
+
+    const contenedorCarrito =
+        document.getElementById("contenedor-carrito");
+
+
+    const totalCarrito =
+        document.getElementById("total-carrito");
+
+
+    // Si estamos en index.html,
+    // contenedor-carrito no existe.
+    // Por eso terminamos esta función.
+    if (!contenedorCarrito) {
+
+        return;
+
+    }
+
+
+    // Limpiar contenido
+    contenedorCarrito.innerHTML = "";
+
+
+    // Revisar si el carrito está vacío
+    if (carrito.length === 0) {
+
+        contenedorCarrito.innerHTML =
+            "<p>Tu carrito está vacío.</p>";
+
+
+        if (totalCarrito) {
+
+            totalCarrito.textContent = "$0";
+
+        }
+
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    carrito.forEach(function(producto) {
+
+
+        const subtotal =
+            producto.precio * producto.cantidad;
+
+
+        total += subtotal;
+
+
+        contenedorCarrito.innerHTML += `
+
+            <div class="producto-carrito">
+
+                <img
+                    src="${producto.imagen}"
+                    alt="${producto.nombre}"
+                    width="120"
+                    height="120"
+                >
+
+
+                <div>
+
+                    <h3>
+                        ${producto.nombre}
+                    </h3>
+
+
+                    <p>
+                        Precio:
+                        $${producto.precio.toLocaleString("es-CL")}
+                    </p>
+
+
+                    <p>
+                        Cantidad:
+                        ${producto.cantidad}
+                    </p>
+
+
+                    <p>
+                        Subtotal:
+                        $${subtotal.toLocaleString("es-CL")}
+                    </p>
+
+
+                    <button onclick="disminuirCantidad(${producto.id})">
+                        -
+                    </button>
+
+
+                    <button onclick="aumentarCantidad(${producto.id})">
+                        +
+                    </button>
+
+
+                    <button onclick="eliminarDelCarrito(${producto.id})">
+                        Eliminar
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+
+    // Mostrar total del carrito
+    if (totalCarrito) {
+
+        totalCarrito.textContent =
+            "$" + total.toLocaleString("es-CL");
+
+    }
+
+}
+
+
+
+// ==========================================
+// AUMENTAR CANTIDAD
+// ==========================================
+
+function aumentarCantidad(idProducto) {
+
+    const producto = carrito.find(function(producto) {
+
+        return producto.id === idProducto;
+
+    });
+
+
+    if (producto) {
+
+        producto.cantidad++;
+
+    }
+
+
+    guardarCarrito();
+
+    actualizarCantidadCarrito();
+
+    mostrarCarrito();
+
+}
+
+
+
+// ==========================================
+// DISMINUIR CANTIDAD
+// ==========================================
+
+function disminuirCantidad(idProducto) {
+
+    const producto = carrito.find(function(producto) {
+
+        return producto.id === idProducto;
+
+    });
+
+
+    if (!producto) {
+
+        return;
+
+    }
+
+
+    producto.cantidad--;
+
+
+    // Si llega a 0, se elimina
+    if (producto.cantidad <= 0) {
+
+        eliminarDelCarrito(idProducto);
+
+        return;
+
+    }
+
+
+    guardarCarrito();
+
+    actualizarCantidadCarrito();
+
+    mostrarCarrito();
+
+}
+
+
+
+// ==========================================
+// ELIMINAR PRODUCTO
+// ==========================================
+
+function eliminarDelCarrito(idProducto) {
+
+    carrito = carrito.filter(function(producto) {
+
+        return producto.id !== idProducto;
+
+    });
+
+
+    guardarCarrito();
+
+    actualizarCantidadCarrito();
+
+    mostrarCarrito();
+
+}
+
+
+
+// ==========================================
+// EJECUTAR AL CARGAR LA PAGINA
+// ==========================================
+
+actualizarCantidadCarrito();
+
+mostrarCarrito();
