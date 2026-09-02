@@ -53,8 +53,17 @@ const productos = [
         imagen: "img/fuente.png"
     },
 
+
+
     {
         id: 8,
+        nombre: "RTX 5080 Gaming Trio",
+        precio: 1999990,
+        imagen: "https://media.solotodo.com/media/products/2014734_picture_1738343912.png"
+    },
+
+    {
+        id: 9,
         nombre: "Tarjeta Madre MSI B550 Tomahawk",
         precio: 199990,
         imagen: "https://img.terabyteshop.com.br/archive/306771404/placa-mae-msi-mag-b550-tomahawk01.png"
@@ -145,8 +154,9 @@ function agregarAlCarrito(idProducto) {
     // Actualizar contador
     actualizarCantidadCarrito();
 
+    mostrarCarrito();
 
-    alert("Producto añadido al carrito");
+    alert("Producto añadido al carrito"); //saltara alerta al añadir un carrito
 
 }
 

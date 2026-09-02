@@ -269,24 +269,27 @@ nav ul li a:hover {
 /* BOTON PRODUCTO */
 
 .producto button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 
-    padding: 10px 20px;
-
+    padding: 10px 15px;
     border: none;
-
     border-radius: 5px;
 
     background-color: #00ff88;
-
     color: #111111;
 
     font-weight: bold;
-
     cursor: pointer;
 
     transition: 0.3s;
+
 }
 
+.producto button + button {
+    margin-top: 12px;
+}
 
 .producto button:hover {
 
@@ -388,6 +391,7 @@ footer {
         height: auto;
         display: block;
     }
+}
 
    /*carrito*/
 
@@ -472,4 +476,3 @@ footer {
     font-size: 20px;
 }
     
-}
