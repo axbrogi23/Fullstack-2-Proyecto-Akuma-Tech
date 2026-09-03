@@ -29,7 +29,7 @@ formularioLogin.addEventListener("submit", function(event) {
     // DOMINIOS PERMITIDOS
 
     const dominiosPermitidos = ["@duoc.cl", "@profesor.duoc.cl","@gmail.com"];
-    
+
 
     const correoValido = dominiosPermitidos.some(function(dominio) {
 
@@ -42,22 +42,19 @@ formularioLogin.addEventListener("submit", function(event) {
 
     if (correo === "") {
 
-        errorCorreo.textContent =
-            "El correo es obligatorio.";
+        errorCorreo.textContent = "El correo es obligatorio.";
 
         formularioValido = false;
 
     } else if (correo.length > 100) {
 
-        errorCorreo.textContent =
-            "El correo no puede superar los 100 caracteres.";
+        errorCorreo.textContent = "El correo no puede superar los 100 caracteres.";
 
         formularioValido = false;
 
     } else if (!correoValido) {
 
-        errorCorreo.textContent =
-            "Solo se permiten correos @duoc.cl, @profesor.duoc.cl o @gmail.com.";
+        errorCorreo.textContent = "Solo se permiten correos @duoc.cl, @profesor.duoc.cl o @gmail.com.";
 
         formularioValido = false;
 
@@ -68,15 +65,13 @@ formularioLogin.addEventListener("submit", function(event) {
 
     if (password === "") {
 
-        errorPassword.textContent =
-            "La contraseña es obligatoria.";
+        errorPassword.textContent = "La contraseña es obligatoria.";
 
         formularioValido = false;
 
     } else if (password.length < 4 || password.length > 10) {
 
-        errorPassword.textContent =
-            "La contraseña debe tener entre 4 y 10 caracteres.";
+        errorPassword.textContent = "La contraseña debe tener entre 4 y 10 caracteres.";
 
         formularioValido = false;
 
