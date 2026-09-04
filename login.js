@@ -46,15 +46,15 @@ formularioLogin.addEventListener("submit", function(event) {
 
         formularioValido = false;
 
-    } else if (correo.length > 100) {
+    } else if (correo.length > 50) {
 
-        errorCorreo.textContent = "El correo no puede superar los 100 caracteres.";
+        errorCorreo.textContent = "El correo no puede superar los 50 caracteres.";
 
         formularioValido = false;
 
     } else if (!correoValido) {
 
-        errorCorreo.textContent = "Solo se permiten correos @duoc.cl, @profesor.duoc.cl o @gmail.com.";
+        errorCorreo.textContent = "Solo se permiten correos con formato @duoc.cl, @profesor.duoc.cl o @gmail.com.";
 
         formularioValido = false;
 

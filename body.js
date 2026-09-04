@@ -74,6 +74,14 @@ const productos = [
         nombre: "Memoria RAM Corsair Vengeance LPX 32GB",
         precio: 149990,
         imagen: "https://media.spdigital.cl/thumbnails/products/crii92y0_8ab41b80_thumbnail_4096.png"
+    },
+
+    {
+
+        id: 11,
+        nombre: "Exodia Panel Zro - White (7 Ventiladores)",
+        precio: 64990,
+        imagen: "img/gabinete_exodia_white.png"
     }
 
 ];
