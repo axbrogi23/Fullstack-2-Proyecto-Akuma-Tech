@@ -28,7 +28,7 @@ formularioLogin.addEventListener("submit", function(event) {
 
     // DOMINIOS PERMITIDOS
 
-    const dominiosPermitidos = ["@duoc.cl", "@profesor.duoc.cl","@gmail.com"];
+    const dominiosPermitidos = ["@duoc.cl", "@profesor.duoc.cl", "@gmail.com"];
 
 
     const correoValido = dominiosPermitidos.some(function(dominio) {
@@ -78,11 +78,61 @@ formularioLogin.addEventListener("submit", function(event) {
     }
 
 
-    // LOGIN CORRECTO
+    // SI LA VALIDACIÓN ES CORRECTA, VERIFICAR USUARIO
 
     if (formularioValido) {
 
-        alert("Inicio de sesión correcto");
+        // Obtener usuarios registrados de LOCALSTORAGE
+
+        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+
+        // Buscar usuario por correo y contraseña
+
+        const usuarioEncontrado = usuarios.find(function(usuario) {
+
+            return usuario.correo === correo && usuario.password === password;
+
+        });
+
+
+        if (usuarioEncontrado) {
+
+            // Guardar sesión activa en LOCALSTORAGE
+
+            localStorage.setItem("sesionActiva", JSON.stringify({
+
+                nombre: usuarioEncontrado.nombre,
+
+                correo: usuarioEncontrado.correo,
+
+                rol: usuarioEncontrado.rol || "usuario"
+
+            }));
+
+
+            alert("¡Inicio de sesión exitoso! Bienvenido " + usuarioEncontrado.nombre);
+
+
+            // Redirigir según el rol
+
+            if (usuarioEncontrado.rol === "admin") {
+
+                window.location.href = "admin.html";
+
+            } else {
+
+                window.location.href = "index.html";
+
+            }
+
+        } else {
+
+            errorCorreo.textContent = "Correo o contraseña incorrectos.";
+
+            errorPassword.textContent = "Correo o contraseña incorrectos.";
+
+        }
 
     }
 
