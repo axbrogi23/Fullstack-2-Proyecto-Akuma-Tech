@@ -82,8 +82,14 @@ const productos = [
         nombre: "Exodia Panel Zro - White (7 Ventiladores)",
         precio: 64990,
         imagen: "img/gabinete_exodia_white.png"
-    }
+    },
 
+    {
+    id: 12,
+    nombre: "Refrigeración Líquida XYZ AQUAPULSE AIO 240mm White",
+    precio: 54990,
+    imagen: "https://media.spdigital.cl/thumbnails/products/1763997187343-AP1_f31f7cf6_07c4fd48_thumbnail_512.jpg"
+}
 ];
 
 

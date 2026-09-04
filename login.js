@@ -46,9 +46,9 @@ formularioLogin.addEventListener("submit", function(event) {
 
         formularioValido = false;
 
-    } else if (correo.length > 50) {
+    } else if (correo.length > 100) {
 
-        errorCorreo.textContent = "El correo no puede superar los 50 caracteres.";
+        errorCorreo.textContent = "El correo no puede superar los 100 caracteres.";
 
         formularioValido = false;
 
