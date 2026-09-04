@@ -219,6 +219,9 @@ function actualizarCantidadCarrito() {
 
 // MOSTRAR PRODUCTOS EN carrito.html //  
 
+// Esta función es básica para index.html
+// carrito.js la sobrescribe con la versión completa
+
 function mostrarCarrito() {
 
     const contenedorCarrito =
@@ -233,6 +236,14 @@ function mostrarCarrito() {
     // contenedor-carrito no existe.
     // Por eso terminamos esta función.
     if (!contenedorCarrito) {
+
+        return;
+
+    }
+
+
+    // Si existe carrito.js, no ejecutar esta versión
+    if (typeof window.mostrarCarritoCompleto !== "undefined") {
 
         return;
 
@@ -449,3 +460,147 @@ function eliminarDelCarrito(idProducto) {
 actualizarCantidadCarrito();
 
 mostrarCarrito();
+
+verificarSesion();
+
+crearAdminPorDefecto();
+
+
+
+// ==============================
+// GESTIÓN DE SESIÓN
+// ==============================
+
+function verificarSesion() {
+
+    const sesionActiva = JSON.parse(localStorage.getItem("sesionActiva"));
+
+    const nav = document.querySelector("nav ul");
+
+
+    if (!nav) {
+
+        return;
+
+    }
+
+
+    if (sesionActiva) {
+
+        // Reemplazar enlace de Iniciar Sesión con nombre de usuario
+
+        const enlaces = nav.querySelectorAll("li");
+
+
+        enlaces.forEach(function(li) {
+
+            const enlace = li.querySelector("a");
+
+
+            if (enlace && enlace.getAttribute("href") === "login.html") {
+
+                li.innerHTML = '<a href="#"><strong>👤 ' + sesionActiva.nombre + '</strong></a>';
+
+            }
+
+
+            if (enlace && enlace.getAttribute("href") === "registro.html") {
+
+                // Si es admin, mostrar enlace al panel de admin
+
+                if (sesionActiva.rol === "admin") {
+
+                    li.innerHTML = '<a href="admin.html"><strong>Panel Admin</strong></a>';
+
+                } else {
+
+                    li.innerHTML = '<a href="#" onclick="cerrarSesion()"><strong>Cerrar Sesión</strong></a>';
+
+                }
+
+            }
+
+        });
+
+        // Si es admin, agregar enlace de Cerrar Sesión después del carrito
+
+        if (sesionActiva.rol === "admin") {
+
+            const enlaceCarrito = nav.querySelector('a[href="carrito.html"]');
+
+            if (enlaceCarrito) {
+
+                const liCarrito = enlaceCarrito.parentElement;
+
+                const liLogout = document.createElement("li");
+
+                liLogout.innerHTML = '<a href="#" onclick="cerrarSesion()"><strong>Cerrar Sesión</strong></a>';
+
+                liCarrito.parentNode.insertBefore(liLogout, liCarrito.nextSibling);
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
+function cerrarSesion() {
+
+    localStorage.removeItem("sesionActiva");
+
+    alert("Sesión cerrada correctamente");
+
+    window.location.href = "index.html";
+
+}
+
+
+
+// ==============================
+// CREAR ADMIN POR DEFECTO
+// ==============================
+
+function crearAdminPorDefecto() {
+
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+
+    // Verificar si ya existe un admin
+
+    const adminExiste = usuarios.find(function(u) {
+
+        return u.rol === "admin";
+
+    });
+
+
+    if (!adminExiste) {
+
+        // Crear usuario administrador por defecto
+
+        usuarios.push({
+
+            nombre: "Administrador",
+
+            rut: "11.111.111-1",
+
+            correo: "admin@gmail.com",
+
+            telefono: "+569 99999999",
+
+            password: "admin123",
+
+            rol: "admin"
+
+        });
+
+
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+    }
+
+}

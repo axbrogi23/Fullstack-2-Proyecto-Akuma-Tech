@@ -17,14 +17,16 @@
 
         <nav>
 
-            <!-- LOGO -->
-            <a href="index.html">
-                <img
-                    src="img/akuma_logo.png"
-                    alt="Logo AkumaTech"
-                    class="logo"
-                    width="100">
-            </a>
+            <!-- LOGO CON VIDEO -->
+            <div class="logo-container">
+                <span class="logo-text neon-glow">Akuma</span>
+                <a href="index.html" class="logo-video-link">
+                    <video class="logo-video" autoplay loop muted playsinline>
+                        <source src="img/cara akuma.webm" type="video/webm">
+                    </video>
+                </a>
+                <span class="logo-text neon-glow">Tech</span>
+            </div>
 
 
             <!-- MENU DE NAVEGACION -->
@@ -39,19 +41,11 @@
                 </li>
 
                 <li>
-                    <a href="#"><strong>Nosotros</strong></a>
-                </li>
-
-                <li>
-                    <a href="#"><strong>Blog</strong></a>
-                </li>
-
-                <li>
-                    <a href="#"><strong>Contacto</strong></a>
-                </li>
-
-                <li>
                     <a href="login.html"><strong>Iniciar Sesión</strong></a>
+                </li>
+
+                <li>
+                    <a href="registro.html"><strong>Registro</strong></a>
                 </li>
 
                 <!-- CARRITO -->
@@ -72,20 +66,52 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main>
 
-        <!-- PRESENTACION DE LA TIENDA -->
-        <section class="inicio">
+        <!-- CARRUSEL DE OFERTAS -->
+        <section class="carrusel">
+            
+            <div class="carrusel-container">
+                
+                <!-- Slide 1 -->
+                <div class="carrusel-slide active" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+                    <div class="slide-contenido">
+                        <span class="slide-badge">🔥 Oferta de la semana</span>
+                        <h2>Hasta 30% de descuento</h2>
+                        <p>En periféricos gamer seleccionados</p>
+                        <a href="#productos" class="slide-boton">Ver ofertas</a>
+                    </div>
+                </div>
 
-            <div class="inicio-texto">
+                <!-- Slide 2 -->
+                <div class="carrusel-slide" style="background: linear-gradient(135deg, #0f3460 0%, #533483 100%);">
+                    <div class="slide-contenido">
+                        <span class="slide-badge">🆕 Próximamente</span>
+                        <h2>Teclado Mecánico XYZ</h2>
+                        <p>Reserva ahora y sé el primero en tenerlo</p>
+                        <a href="#" class="slide-boton">Más información</a>
+                    </div>
+                </div>
 
-                <h2>Todo para armar tu Setup Gamer</h2>
+                <!-- Slide 3 -->
+                <div class="carrusel-slide" style="background: linear-gradient(135deg, #1a472a 0%, #2d6a4f 100%);">
+                    <div class="slide-contenido">
+                        <span class="slide-badge">🚚 Envío gratis</span>
+                        <h2>Envío sin costo</h2>
+                        <p>En compras superiores a $50.000</p>
+                        <a href="#productos" class="slide-boton">Comprar ahora</a>
+                    </div>
+                </div>
 
-                <p>
-                    Encuentra componentes, periféricos y accesorios
-                    para mejorar tu experiencia gaming.
-                </p>
+            </div>
 
-                <a href="#productos" class="boton">Ver productos</a>
+            <!-- Flechas de navegación -->
+            <button class="carrusel-flecha carrusel-flecha-izq" onclick="cambiarSlide(-1)">❮</button>
+            <button class="carrusel-flecha carrusel-flecha-der" onclick="cambiarSlide(1)">❯</button>
 
+            <!-- Indicadores (dots) -->
+            <div class="carrusel-dots">
+                <span class="dot active" onclick="irASlide(0)"></span>
+                <span class="dot" onclick="irASlide(1)"></span>
+                <span class="dot" onclick="irASlide(2)"></span>
             </div>
 
         </section>
@@ -415,14 +441,39 @@
     
     <footer>
 
-        <p>Contacto: info@akumatech.com | Tel: +569 12345678</p>
+        <div class="footer-contenido">
 
-        <small>© 2026 AkumaTech - Tienda de Tecnología</small>
+            <div class="footer-seccion">
+                <h3>Nosotros</h3>
+                <p>AkumaTech es tu tienda gamer de confianza. Ofrecemos los mejores componentes, periféricos y accesorios para armar tu setup gamer ideal.</p>
+            </div>
+
+            <div class="footer-seccion">
+                <h3>Contacto</h3>
+                <p>📧 info@akumatech.com</p>
+                <p>📞 +569 12345678</p>
+                <p>📍 Santiago, Chile</p>
+            </div>
+
+            <div class="footer-seccion">
+                <h3>Enlaces útiles</h3>
+                <a href="index.html">Inicio</a>
+                <a href="#productos">Productos</a>
+                <a href="login.html">Iniciar Sesión</a>
+                <a href="registro.html">Registro</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <small>&copy; 2026 AkumaTech - Tienda de Tecnología. Todos los derechos reservados.</small>
+        </div>
 
     </footer>
 
     <!--Conecta el archivo JavaScript-->
     <script src="body.js"></script>
+    <script src="carrusel.js"></script>
 
 </body>
 
