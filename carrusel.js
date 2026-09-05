@@ -6,7 +6,7 @@ let slideActual = 0;
 
 let intervaloCarrusel;
 
-const TIEMPO_CAMBIO = 3000; // 3 segundos
+const TIEMPO_CAMBIO = 7000; // 7 segundos
 
 
 
